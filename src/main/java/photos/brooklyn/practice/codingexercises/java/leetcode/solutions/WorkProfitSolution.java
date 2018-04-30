@@ -1,4 +1,4 @@
-package example.codingproblems.leetcode.solution;
+package photos.brooklyn.practice.codingexercises.java.leetcode.solutions;
 
 import java.util.Arrays;
 import java.util.Comparator;

@@ -1,4 +1,4 @@
-package example.codingproblems.leetcode;
+package photos.brooklyn.practice.codingexercises.java.leetcode;
 
 import java.util.HashMap;
 import java.util.Map;
