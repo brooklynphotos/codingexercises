@@ -6,7 +6,7 @@
  * @param {number[][]} grid
  * @return {number}
  */
-var numMagicSquaresInside = function(grid) {
+const numMagicSquaresInside = (grid) => {
   var count =0;
   for(var i=0;i+3<=grid.length;i++){
     for(var j=0;j+3<=grid[i].length;j++){
@@ -19,7 +19,7 @@ var numMagicSquaresInside = function(grid) {
   return count;
 };
 
-var getGrid = function(grid,row,column){
+const getGrid = (grid,row,column) => {
   const res = [];
   for(var i=row;i<row+3;i++){
     const row = grid[i];
@@ -28,9 +28,9 @@ var getGrid = function(grid,row,column){
   return res;
 }
 
-var summer = (acc, curVal) => acc + curVal;
+const summer = (acc, curVal) => acc + curVal;
 
-var hasDistinct1to9 = function(grid){
+const hasDistinct1to9 = (grid) => {
   var numberSet = new Set();
   for(var i=0;i<grid.length;i++){
     for(var j=0;j<grid[i].length;j++){
@@ -43,7 +43,7 @@ var hasDistinct1to9 = function(grid){
   return true;
 }
 
-var isMagic = function(grid){
+const isMagic = (grid) => {
   if(!hasDistinct1to9(grid)) return false;
   var rsum = grid[0].reduce(summer);
   var thisRSum = 0;
@@ -66,7 +66,7 @@ var isMagic = function(grid){
 }
 
 // test
-var testGrid = [
+const testGrid = [
   [1,2,3,4],
   [5,6,7,8],
   [9,10,11,12],
