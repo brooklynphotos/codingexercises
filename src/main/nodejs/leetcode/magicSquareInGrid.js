@@ -1,4 +1,8 @@
 /**
+ * https://leetcode.com/contest/weekly-contest-86/problems/magic-squares-in-grid/
+ */
+
+/**
  * @param {number[][]} grid
  * @return {number}
  */
