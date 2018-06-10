@@ -5,7 +5,7 @@ package photos.brooklyn.practice.codingexercises.scala.leetcode;
  */
 object ShiftingLetters {
 
-    def shiftChar(c: Char, shiftAmount: Int): Char = (((c.toInt - 'a'.toInt + shiftAmount) % 26) + 'a'.toInt).toChar
+    def shiftChar(c: Char, shiftAmount: Int): Char = (((c - 'a' + shiftAmount) % 26) + 'a').toChar
 
     def shiftChars(chars: Array[Char], firstLetters: Int, shiftAmount: Int): Array[Char] = {
         for(i <- 0 to firstLetters){
