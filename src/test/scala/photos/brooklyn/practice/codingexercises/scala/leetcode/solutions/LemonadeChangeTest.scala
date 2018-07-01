@@ -1,7 +1,6 @@
-package photos.brooklyn.practice.codingexercises.scala.leetcode
+package photos.brooklyn.practice.codingexercises.scala.leetcode.solutions
 
 import org.scalatest.{FlatSpec, Matchers}
-
 import LemonadeChange._
 import photos.brooklyn.practice.codingexercises.scala.leetcode.utils.LemonadeChangeUtils._
 
