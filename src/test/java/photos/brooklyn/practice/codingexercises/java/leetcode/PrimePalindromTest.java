@@ -22,6 +22,10 @@ public class PrimePalindromTest {
     public void primePalindromeTest1() {
         assertEquals(new PrimePalindrom().primePalindrome(9989900),100030001);
     }
+    @Test
+    public void primePalindromeTest2() {
+        assertEquals(new PrimePalindrom().primePalindrome(3),3);
+    }
 
     @Test
     public void closestPalindromEvenAlready() {

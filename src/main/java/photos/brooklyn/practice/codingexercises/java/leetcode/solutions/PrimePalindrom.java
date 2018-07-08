@@ -1,5 +1,8 @@
 package photos.brooklyn.practice.codingexercises.java.leetcode.solutions;
 
+/**
+ * https://leetcode.com/problems/prime-palindrome/discuss/146798/Search-Palindrome-with-Even-Digits
+ */
 public class PrimePalindrom {
     public int primePalindrome(int N) {
         if (8 <= N && N <= 11) return 11;
