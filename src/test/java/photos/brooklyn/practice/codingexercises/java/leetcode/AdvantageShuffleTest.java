@@ -8,9 +8,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-import java.util.stream.Collectors;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class AdvantageShuffleTest {
     private final AdvantageShuffle shuffle = new AdvantageShuffle();
@@ -41,7 +41,8 @@ public class AdvantageShuffleTest {
         final Map<String, int[]> data = loadData("advantage_shuffle");
         final int[] A = data.get("a");
         final int[] B = data.get("b");
-        assertEquals(getAdvantage(new int[]{2,0,2,1,4},B), getAdvantage(shuffle.advantageCount(A, B),B));
+        final int[] C = data.get("c");
+        assertEquals(getAdvantage(C,B), getAdvantage(shuffle.advantageCount(A, B),B));
     }
 
     @Test

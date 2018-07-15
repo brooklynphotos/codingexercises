@@ -16,9 +16,7 @@ public class AdvantageShuffle {
         final List<Integer> tooSmalls = new LinkedList<>();
         // start with the one that is not too small
         int reversedBPos = 0;
-
-        for(int aPointer = 0;aPointer<A.length; aPointer++){
-            final int x = A[aPointer];
+        for(int x :A){
             // if we exhausted the items in B, we should just dump the remaining As in the result's empty slots
             if(reversedBPos==reversedB.length){
                 final int nextEmptyPosition = findNextEmpty(res);
