@@ -1,8 +1,6 @@
 package photos.brooklyn.practice.codingexercises.java.leetcode;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * https://leetcode.com/contest/weekly-contest-93/problems/advantage-shuffle/
@@ -10,21 +8,45 @@ import java.util.List;
 public class AdvantageShuffle {
     public int[] advantageCount(int[] A, int[] B) {
         final int[] res = new int[A.length];
-        final List<Integer> unfit = new ArrayList<>();
         Arrays.fill(res, -1);
         Arrays.sort(A);
-        for(int i=0;i<A.length;i++){
-            final int x = A[i];
-            final int desiredPosition = findMinPartner(x, B, res);
-            if(desiredPosition==-1 || res[desiredPosition]>-1){
-                unfit.add(x);
+        final int[][] reversedB = reverseLookup(B);
+        Arrays.sort(reversedB, Comparator.comparingInt(x -> x[0]));
+        // find the first in A that is greater than the smallest B
+        final List<Integer> tooSmalls = new LinkedList<>();
+        // start with the one that is not too small
+        int reversedBPos = 0;
+
+        for(int aPointer = 0;aPointer<A.length; aPointer++){
+            final int x = A[aPointer];
+            // if we exhausted the items in B, we should just dump the remaining As in the result's empty slots
+            if(reversedBPos==reversedB.length){
+                final int nextEmptyPosition = findNextEmpty(res);
+                if(nextEmptyPosition > -1) res[nextEmptyPosition] = x;
+                continue;
+            }
+            final int[] candidate = reversedB[reversedBPos];
+            if(candidate[0]<x){
+                res[candidate[1]] = x;
+                reversedBPos++;
             }else{
-                res[desiredPosition] = x;
+                // x is too small
+                tooSmalls.add(x);
             }
         }
-        for(int unfitInt : unfit){
+        // the ones that were too small will get in the occupied slots
+        for(int small : tooSmalls){
             final int nextEmptyPosition = findNextEmpty(res);
-            res[nextEmptyPosition] = unfitInt;
+            if(nextEmptyPosition==-1) throw new IllegalArgumentException("Didn't expect to find nothing");
+            res[nextEmptyPosition] = small;
+        }
+        return res;
+    }
+
+    private static int[][] reverseLookup(int[] arr) {
+        final int[][] res = new int[arr.length][2];
+        for(int i=0;i<arr.length;i++){
+            res[i] = new int[]{arr[i],i};
         }
         return res;
     }
@@ -33,20 +55,6 @@ public class AdvantageShuffle {
         for(int i=0;i<arr.length;i++){
             if(arr[i]==-1) return i;
         }
-        throw new IllegalArgumentException("No more empty parts");
-    }
-
-    private static int findMinPartner(int x, int[] src, int[] res) {
-        int diff = Integer.MAX_VALUE;
-        int minPartnerIndex = -1;
-        for(int i=0;i<src.length;i++){
-            final int a = src[i];
-            final int thisDiff = x - a;
-            if(thisDiff>0 && thisDiff<diff && res[i]==-1){
-                diff = thisDiff;
-                minPartnerIndex = i;
-            }
-        }
-        return minPartnerIndex;
+        return -1;
     }
 }
