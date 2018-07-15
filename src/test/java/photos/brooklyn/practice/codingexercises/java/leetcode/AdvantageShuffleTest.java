@@ -46,16 +46,14 @@ public class AdvantageShuffleTest {
     }
 
     @Test
-    public void advantageCount4() throws IOException {
-        final Map<String, int[]> data = loadData("advantage_shuffle");
+    public void advantageCount4() {
         final int[] A = {5621,1743,5532,3549,9581};
         final int[] B = {913,9787,4121,5039,1481};
         assertEquals(getAdvantage(new int[]{1743,9581,5532,5621,3549},B), getAdvantage(shuffle.advantageCount(A, B),B));
     }
 
     @Test
-    public void advantageCount5() throws IOException {
-        final Map<String, int[]> data = loadData("advantage_shuffle");
+    public void advantageCount5() {
         final int[] A = {15777,7355,6475,15448,18412};
         final int[] B = {986,13574,14234,18412,19893};
         assertEquals(getAdvantage(new int[]{6475,15448,15777,18412,7355},B), getAdvantage(shuffle.advantageCount(A, B),B));
