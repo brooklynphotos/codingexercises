@@ -21,4 +21,9 @@ public class ShortestPathToAllKeysTest {
     public void shortestPathAllKeys_3() {
         assertEquals(7, obj.shortestPathAllKeys(new String[]{"@..a","##.#",".bA."}));
     }
+
+    @Test
+    public void shortestPathAllKeys_impossible() {
+        assertEquals(-1, obj.shortestPathAllKeys(new String[]{"@Aa"}));
+    }
 }
