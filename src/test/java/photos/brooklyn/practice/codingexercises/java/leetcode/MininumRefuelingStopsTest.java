@@ -8,7 +8,8 @@ import org.junit.rules.TestName;
 import static org.junit.Assert.*;
 
 public class MininumRefuelingStopsTest {
-    private final MininumRefuelingStopsGreedy obj = new MininumRefuelingStopsGreedy();
+    private final MininumRefuelingStopsDFS obj = new MininumRefuelingStopsDFS();
+//    private final MininumRefuelingStopsGreedy obj = new MininumRefuelingStopsGreedy();
 //    private final MininumRefuelingStops obj = new MininumRefuelingStops();
     private long start;
     @Rule public final TestName testName = new TestName();
