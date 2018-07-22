@@ -44,12 +44,7 @@ public class KokoEatsBananas {
     private static long calculateHours(final int[] piles, final int rate) {
         long totalHours=0;
         for(final int pileSize : piles){
-            int hours = pileSize / rate;
-            int remainder = pileSize % rate;
-            if(remainder>0){
-                hours++;
-            }
-            totalHours += hours;
+            totalHours += Math.ceil(pileSize/(double)rate);
         }
         return totalHours;
     }
