@@ -4,11 +4,13 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
+import photos.brooklyn.practice.codingexercises.java.leetcode.solutions.MininumRefuelingStops;
 
 import static org.junit.Assert.*;
 
 public class MininumRefuelingStopsTest {
-    private final MininumRefuelingStopsDFS obj = new MininumRefuelingStopsDFS();
+    private final MininumRefuelingStops obj = new MininumRefuelingStops();
+//    private final MininumRefuelingStopsDFS obj = new MininumRefuelingStopsDFS();
 //    private final MininumRefuelingStopsGreedy obj = new MininumRefuelingStopsGreedy();
 //    private final MininumRefuelingStops obj = new MininumRefuelingStops();
     private long start;
