@@ -1,4 +1,4 @@
-package photos.brooklyn.practice.codingexercises.java.leetcode;
+package photos.brooklyn.practice.codingexercises.java.hackerrank;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

@@ -1,4 +1,4 @@
-package photos.brooklyn.practice.codingexercises.java.leetcode;
+package photos.brooklyn.practice.codingexercises.java.hackerrank;
 
 import org.junit.Test;
 
