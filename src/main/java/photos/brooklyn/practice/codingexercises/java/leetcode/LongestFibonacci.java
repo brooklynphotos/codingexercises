@@ -13,8 +13,10 @@ public class LongestFibonacci {
         int maxLength = 0;
         for(int i=0;i<A.length; i++){
             final int a1 = A[i];
+            if(a1>A[A.length-1]/2) continue;
             for(int j=i+1;j<A.length;j++){
                 final int a2 = A[j];
+                if((a1+a2)>A[A.length-1]) break;
                 final int fibonacciLength = 2 + findFibonacci(a1, a2, uniques);
                 maxLength = Math.max(maxLength, fibonacciLength);
             }
