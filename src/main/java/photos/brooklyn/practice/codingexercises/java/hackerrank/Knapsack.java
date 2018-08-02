@@ -30,13 +30,18 @@ public class Knapsack {
         final int n = wts.length;
         // table of i's and w's
         final int[][] dp = new int[n + 1][W + 1];
-        for (int i = 0; i <= n; i++) {
-            for (int w = 0; w <= W; w++) {
-                if (i == 0 || w == 0) {
-                    dp[i][w] = 0;
-                } else if (wts[i - 1] <= w) {
+        // all dp[i][w] where i=0 or w=0 remain 0
+        for (int i = 1; i <= n; i++) {
+            for (int w = 1; w <= W; w++) {
+                if (wts[i - 1] <= w) {
+                    // the weight of the new item is not greater than weight limit
+                    // so the max value is the greater of either
+                    // 1. the value of the new item plus the max value of the previous item without this new weight
+                    // 2. or the previous item with the weight limit
                     dp[i][w] = Math.max(values[i - 1] + dp[i - 1][w - wts[i - 1]], dp[i - 1][w]);
                 } else {
+                    // the weight of the new item, wts[i-1], is greater than the current weight limit w
+                    // therefore the dp value for this weight limit would be the dp value without the new item
                     dp[i][w] = dp[i - 1][w];
                 }
             }
