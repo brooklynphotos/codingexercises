@@ -7,7 +7,6 @@ import java.util.Arrays;
  */
 public class ProfitableSchemes {
     public int profitableSchemes(int G, int P, int[] group, int[] profit) {
-        if(G<0) return 0;
         int count = 0;
         for (int i = 0; i < group.length; i++) {
             final int g = group[i];
