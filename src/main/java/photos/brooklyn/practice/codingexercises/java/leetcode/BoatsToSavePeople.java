@@ -7,6 +7,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+/**
+ * https://leetcode.com/contest/weekly-contest-96/problems/boats-to-save-people/
+ */
 public class BoatsToSavePeople {
     public int numRescueBoats(int[] people, int limit) {
         final Set<Integer> peopleWaiting = IntStream.range(0, people.length).boxed().collect(Collectors.toSet());
