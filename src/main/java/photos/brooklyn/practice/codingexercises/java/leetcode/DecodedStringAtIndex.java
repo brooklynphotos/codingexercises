@@ -1,70 +1,57 @@
 package photos.brooklyn.practice.codingexercises.java.leetcode;
 
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * https://leetcode.com/contest/weekly-contest-96/problems/decoded-string-at-index/
  */
 public class DecodedStringAtIndex {
     public String decodeAtIndex(String S, int K) {
-        final char[] chars = new char[K];
-        int pointer = 0;
+        StringBuilder sb = new StringBuilder();
+        StringRepeater block = null;
         for (char c : S.toCharArray()) {
             final int possibleInt = Character.getNumericValue(c);
             if (possibleInt >= 2 && possibleInt <= 9) {
-                final char found = copy(chars, pointer, possibleInt, K);
-                if(found != '0') return Character.toString(found);
-                pointer = possibleInt * pointer;
+                block = new StringRepeater(sb.toString(), possibleInt, block);
+                sb = new StringBuilder();
             } else {
-                chars[pointer++] = c;
-                if(pointer==K) return Character.toString(c);
+                sb.append(c);
+            }
+            if (K <= StringRepeater.getLength(block) + sb.length()) {
+                if (sb.length() > 0) {
+                    return sb.substring(sb.length() - 1);
+                } else {
+                    return findAtIndex(K - 1, block);
+                }
             }
         }
-        throw new IllegalArgumentException("Can't happen with " + S + " and " + K);
+        return sb.substring(K - 1);
     }
 
-    private static char copy(final char[] chars, final int upperBound, final int multiplier, final int K) {
-        for (int n = 1; n < multiplier; n++) {
-            int start = upperBound * n;
-            for (int c = 0; c < upperBound; c++) {
-                int d = start + c;
-                chars[d] = chars[c];
-                if(d+1 == K) return chars[d];
-            }
+    private static String findAtIndex(final int k, final StringRepeater block) {
+        final int unitLength = block.length / block.multiplier;
+        final int extra = k % unitLength;
+        if (extra > StringRepeater.getLength(block.previous) - 1) {
+            return Character.toString(block.chars.charAt(extra - StringRepeater.getLength(block.previous)));
+        } else {
+            return findAtIndex(extra, block.previous);
         }
-        return '0';
+
     }
 
-    public String decodeAtIndex_(String S, int K) {
-        StringRepeater lastBlock = null;
-        List<Character> characterBlock = new LinkedList<>();
-        int lastLength = 0;
-        for (char c : S.toCharArray()) {
-            final int possibleInt = Character.getNumericValue(c);
-            if (possibleInt >= 2 && possibleInt <= 9) {
-                lastLength *= possibleInt;
-                lastBlock = new StringRepeater(characterBlock, possibleInt);
-                characterBlock = new LinkedList<>();
-
-            } else {
-                characterBlock.add(c);
-                lastLength++;
-            }
-            if (K <= lastLength) {
-                // we've found it
-            }
-        }
-        throw new UnsupportedOperationException();
-    }
-
-    class StringRepeater{
-        public StringRepeater(final List<Character> chars, final int multiplier) {
+    static class StringRepeater{
+        public StringRepeater(final String chars, final int multiplier, final StringRepeater previous) {
             this.chars = chars;
             this.multiplier = multiplier;
+            this.length = multiplier * (chars.length() + StringRepeater.getLength(previous));
+            this.previous = previous;
         }
 
-        private List<Character> chars = new LinkedList<>();
-        private int multiplier = 1;
+        private String chars;
+        private int multiplier;
+        private StringRepeater previous;
+        private int length;
+
+        static int getLength(final StringRepeater block) {
+            return block == null ? 0 : block.length;
+        }
     }
 }
