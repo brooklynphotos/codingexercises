@@ -2,10 +2,13 @@ package photos.brooklyn.practice.codingexercises.java.leetcode;
 
 import org.junit.Test;
 
+import photos.brooklyn.practice.codingexercises.java.leetcode.solutions.BoatsToSavePeople;
+
 import static org.junit.Assert.*;
 
 public class BoatsToSavePeopleTest {
     private BoatsToSavePeople obj = new BoatsToSavePeople();
+//    private BoatsToSavePeople obj = new BoatsToSavePeople();
 
     @Test
     public void numRescueBoats_small() {
