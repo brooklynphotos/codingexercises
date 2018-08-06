@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import photos.brooklyn.practice.codingexercises.java.leetcode.solutions.ProfitableSchemes;
+
 public class ProfitableSchemesTest {
     private final ProfitableSchemes obj = new ProfitableSchemes();
 
