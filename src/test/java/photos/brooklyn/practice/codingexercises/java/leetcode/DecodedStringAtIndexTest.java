@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+import photos.brooklyn.practice.codingexercises.java.leetcode.solutions.DecodedStringAtIndex;
+
 public class DecodedStringAtIndexTest {
     private DecodedStringAtIndex obj = new DecodedStringAtIndex();
 
