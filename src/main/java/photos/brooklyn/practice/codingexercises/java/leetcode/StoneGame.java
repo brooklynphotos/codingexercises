@@ -1,10 +1,7 @@
 package photos.brooklyn.practice.codingexercises.java.leetcode;
 
-import photos.brooklyn.practice.codingexercises.java.leetcode.utils.ListUtils;
-
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * https://leetcode.com/contest/weekly-contest-95/problems/stone-game/
