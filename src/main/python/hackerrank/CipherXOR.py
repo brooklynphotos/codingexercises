@@ -4,20 +4,15 @@ from functools import reduce
 
 def cipher(k, s):
     n = len(s) + 1 - k
-    bits = [int(x) for x in s][:n]
     decrypted = [None] * n
-    decrypted[0] = bits[0] # always in plain text
+    decrypted[0] = int(s[0])
     for i in range(1,n):
-        decrypted[i] = xorAll(bits[i],decrypted,max(0,i-k+1),i)
+        decrypted[i] = int(s[i]) ^ int(s[i-1])
+        if i>=k:
+            decrypted[i] ^= decrypted[i-k]
     return reduce(lambda resStr,x: resStr + str(x),decrypted, "")
 
-def xorAll(initializer, others, start, upTo):
-    res = initializer
-    for i in range(start, upTo):
-        res ^= others[i]
-    return res
-
 if __name__ == '__main__':
-    print(cipher(4, "1110100110"),"\n")
-    print(cipher(2, "1110001"),"\n")
-    print(cipher(3, "1110011011"),"\n")
+    print(cipher(4, "1110100110")=="1001010","\n")
+    print(cipher(2, "1110001")=="101111","\n")
+    print(cipher(3, "1110011011")=="10000101","\n")
