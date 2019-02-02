@@ -9,11 +9,8 @@ class StringNoAAAorBBB:
         """
         l = max(A, B)
         s = min(A, B)
-        lc = 'a' if l==A else 'b'
-        sc = 'b' if l==A else 'a'
-        r = []
-        for c in range(s):
-            r.append(lc+sc)
+        lc,sc = ('a','b') if l==A else ('b','a')
+        r = [lc+sc] * s
         diff = l - s
         if diff >0:
             r.append(lc)
