@@ -1,4 +1,5 @@
 # https://projecteuler.net/problem=18
+# https://projecteuler.net/problem=67
 
 def maxSum(pyramid):
     # replicate structure of pyramid
