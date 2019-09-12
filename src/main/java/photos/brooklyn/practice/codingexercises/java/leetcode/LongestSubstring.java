@@ -1,5 +1,12 @@
 package photos.brooklyn.practice.codingexercises.java.leetcode;
 
+import java.util.Arrays;
+
+/**
+ * https://leetcode.com/problems/longest-substring-without-repeating-characters/
+ * For sliding windows discussion
+ * https://medium.com/outco/how-to-solve-sliding-window-problems-28d67601a66
+ */
 public class LongestSubstring {
     public int lengthOfLongestSubstring(String s) {
         return lengthOfLongestSubstring(s, makeBlankArray(), 0, 0);
@@ -7,9 +14,7 @@ public class LongestSubstring {
 
     private static int[] makeBlankArray(){
         final int[] arr = new int[255];
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = -1;
-        }
+        Arrays.fill(arr, -1);
         return arr;
     }
 
