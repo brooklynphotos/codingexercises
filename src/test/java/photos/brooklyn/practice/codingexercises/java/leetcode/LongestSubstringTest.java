@@ -8,10 +8,10 @@ public class LongestSubstringTest {
 
     @Test
     public void lengthOfLongestSubstring() {
+        assertEquals(1, new LongestSubstring().lengthOfLongestSubstring("bbbbb"));
         assertEquals(3, new LongestSubstring().lengthOfLongestSubstring("dvdf"));
         assertEquals(1, new LongestSubstring().lengthOfLongestSubstring(" "));
         assertEquals(3, new LongestSubstring().lengthOfLongestSubstring("abcabcbb"));
-        assertEquals(1, new LongestSubstring().lengthOfLongestSubstring("bbbbb"));
         assertEquals(3, new LongestSubstring().lengthOfLongestSubstring("pwwkew"));
     }
 }
