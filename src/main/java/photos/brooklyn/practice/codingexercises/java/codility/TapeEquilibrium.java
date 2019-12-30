@@ -1,5 +1,8 @@
 package photos.brooklyn.practice.codingexercises.java.codility;
 
+/**
+ * https://codility.com/demo/take-sample-test/tape_equilibrium
+ */
 public class TapeEquilibrium {
     public int solution(int[] A) {
         int total = sum(A);
