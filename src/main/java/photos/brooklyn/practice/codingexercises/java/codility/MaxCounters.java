@@ -13,10 +13,13 @@ public class MaxCounters {
      */
     public int[] solution(int N, int[] A) {
         int currentMax = 0;
-        final int[] counter = new int[N];
+        int baseline = 0;
+        int[] counter = new int[N];
         for (int a : A) {
             if (a > N) {
-                updateCounter(counter, currentMax);
+                baseline += currentMax;
+                currentMax = 0; // now we have no current max on the counter array
+                counter = new int[N]; // we reset the baseline to zero
             } else {
                 int index = a - 1;
                 int newVal = counter[index] + 1;
@@ -26,12 +29,10 @@ public class MaxCounters {
                 }
             }
         }
-        return counter;
-    }
-
-    static void updateCounter(int[] counter, int newVal) {
+        // the result is always the baseline plus whatever the counter says
         for (int i = 0; i < counter.length; i++) {
-            counter[i] = newVal;
+            counter[i] += baseline;
         }
+        return counter;
     }
 }
