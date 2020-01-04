@@ -60,4 +60,17 @@ public class MaxNonoverlappingSegmentsTest {
         final int[] B = {10};
         assertEquals(1, new MaxNonoverlappingSegments().solution(A, B));
     }
+    @Test
+    public void givenLargeNonoverlapping_returnSize() {
+        final int[] A = new int[30_000];
+        final int[] B = new int[A.length];
+        final int segLength = 1;
+        final int gap = 1;
+        final int room = segLength + gap;
+        for (int i = 0; i < A.length; i++) {
+            A[i] = 1_000_000_000 - (A.length * room) + (i * room);
+            B[i] = A[i] + segLength;
+        }
+        assertEquals(A.length, new MaxNonoverlappingSegments().solution(A, B));
+    }
 }
