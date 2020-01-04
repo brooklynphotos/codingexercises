@@ -1,11 +1,15 @@
 package photos.brooklyn.practice.codingexercises.java.codility;
 
+/**
+ * https://codility.com/demo/take-sample-test/number_solitaire
+ */
 public class NumberSolitaire {
+    private static final int FACE_COUNT = 6;
 
     /**
      *
      * @param A size is between 2 and 100,000 incl, each element between -10,000 and 10,000 incl
-     * @return
+     * @return max sum from rolling the die starting from i=0
      */
     public int solution(int[] A) {
         /* strategy
@@ -27,7 +31,7 @@ public class NumberSolitaire {
 
     static int maxRest(final int[] dp, final int rootIndex) {
         int max = Integer.MIN_VALUE;
-        for (int i = rootIndex + 1; i < Math.min(dp.length, rootIndex + 7); i++) {
+        for (int i = rootIndex + 1; i < Math.min(dp.length, rootIndex + FACE_COUNT + 1); i++) {
             max = Math.max(max, dp[i]);
         }
         return max;
