@@ -14,7 +14,7 @@ public class MaxProductOfThree {
      * @return max product of three numbers from A
      */
     public int solution(int[] A) {
-        /* strategy
+        /* strategy: https://www.martinkysel.com/codility-maxproductofthree-solution/
          * 1. Sort the array
          * 2. Max of either the two smallest and the largest or the three largest. The former takes care of getting two negative numbers whose product might be big
          */
