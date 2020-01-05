@@ -71,7 +71,7 @@ public class MaxProductOfThreeTest {
         final int[] A = {0, 1, -2, -3};
         assertEquals(6, new MaxProductOfThree().solution(A));
     }
-    @Test(timeout = 5)
+    @Test(timeout = 20)
     public void givenBiggest_returnCorrect() {
         final int[] A = new int[100_000];
         for (int i = 0; i < A.length; i++) {
