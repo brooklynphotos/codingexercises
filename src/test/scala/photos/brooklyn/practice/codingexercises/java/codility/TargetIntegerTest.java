@@ -26,4 +26,22 @@ public class TargetIntegerTest {
         final int[] A = {4, 9};
         assertNull(TargetInteger.findPair(A, 8));
     }
+    @Test
+    public void givenEmptyArray_mustReturnNull() {
+        final int[] A = {};
+        assertNull(TargetInteger.findPair(A, 8));
+    }
+    @Test
+    public void givenImpossibleTarget_mustReturnNull() {
+        final int[] A = {1,2,3};
+        assertNull(TargetInteger.findPair(A, 10));
+    }
+    @Test(timeout = 200)
+    public void givenLargeArrayOfNearly_mustReturnNull() {
+        final int[] A = new int[1_000_000];
+        for (int i = 0; i < A.length; i++) {
+            A[i] = Integer.MAX_VALUE - i;
+        }
+        assertNull(TargetInteger.findPair(A, Integer.MIN_VALUE));
+    }
 }
