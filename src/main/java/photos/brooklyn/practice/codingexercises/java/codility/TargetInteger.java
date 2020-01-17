@@ -24,15 +24,21 @@ public class TargetInteger {
         if (A.length < 2) {
             return null;
         }
-        final Set<Integer> set = new HashSet<>();
+        // keeps track of the unique numbers and their counts in the array
+        final Map<Integer, Integer> numberCounts = new HashMap<>();
         for(int a : A) {
-            set.add(a);
+            numberCounts.compute(a, (n, count) -> count == null ? 1 : count + 1);
         }
         for(int a : A) {
-            final long diff = target - a;
-            if(Math.abs(diff) < Integer.MAX_VALUE && set.contains((int)diff)){
-                // if diff is in the set, we know it's an int
-                return new int[]{a, (int)diff};
+            final long diffLong = target - a;
+            // only integer-size values exist in our input A
+            if(Math.abs(diffLong) > Integer.MAX_VALUE) continue;
+            final int diff = (int)diffLong;
+            // we have a winner if the candidate exists in the map AND that if that candidate is the same as `a`,
+            // we must have at least two instances of `a`
+            final Integer maybeCount = numberCounts.get(diff);
+            if (maybeCount != null && (diff != a || maybeCount > 1)) {
+                return new int[]{a, diff};
             }
         }
         return null;
