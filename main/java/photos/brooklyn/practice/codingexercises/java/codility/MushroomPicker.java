@@ -1,5 +1,8 @@
 package photos.brooklyn.practice.codingexercises.java.codility;
 
+/**
+ * https://codility.com/media/train/3-PrefixSums.pdf
+ */
 public class MushroomPicker {
     public int maxCollection(int[] A, int k, int m) {
         // from k, create prefix sum left and right
