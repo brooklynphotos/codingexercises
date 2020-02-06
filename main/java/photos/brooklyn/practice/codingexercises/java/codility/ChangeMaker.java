@@ -1,5 +1,8 @@
 package photos.brooklyn.practice.codingexercises.java.codility;
 
+/**
+ * not actually in codility, just what TopTal asked
+ */
 public class ChangeMaker {
     private static int[] DENOMINATIONS = {1, 5, 10, 25, 50, 100};
 
