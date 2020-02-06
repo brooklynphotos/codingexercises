@@ -36,8 +36,8 @@ public class BiggestNumberInGrid {
         final int[] rowData = board[row];
 
         for (int col = 0; col < rowData.length; col++) {
-            final int digit = board[row][col];
-            if (digit > 0 && (maxC == null || digit > rowData[col])) {
+            final int digit = rowData[col];
+            if (digit > 0 && (maxC == null || digit > maxC.getValue(board))) {
                 maxC = new Coordinate(row, col);
             }
         }
@@ -70,11 +70,17 @@ public class BiggestNumberInGrid {
     private static List<Coordinate> getSurroundingCoordinates(final Coordinate lastCoordinate, final List<Coordinate> coordinates, final int[][] board) {
         final Stream<Coordinate> possibilities = Stream.of(
                 new Coordinate(lastCoordinate.row - 1, lastCoordinate.col),
-                new Coordinate(lastCoordinate.row - 1, lastCoordinate.col),
-                new Coordinate(lastCoordinate.row - 1, lastCoordinate.col),
-                new Coordinate(lastCoordinate.row - 1, lastCoordinate.col)
+                new Coordinate(lastCoordinate.row, lastCoordinate.col - 1),
+                new Coordinate(lastCoordinate.row + 1, lastCoordinate.col),
+                new Coordinate(lastCoordinate.row, lastCoordinate.col + 1)
         );
-        return possibilities.filter(coordinate -> coordinate.col >= 0 && coordinate.col < board[0].length && coordinate.row >= 0 && coordinate.row < board.length).collect(Collectors.toList());
+        return possibilities.filter(coordinate ->
+                coordinate.col >= 0
+                && coordinate.col < board[0].length
+                && coordinate.row >= 0
+                && coordinate.row < board.length
+                && !coordinates.contains(coordinate)
+        ).collect(Collectors.toList());
     }
 
 
@@ -100,6 +106,10 @@ public class BiggestNumberInGrid {
         Coordinate(int row, int col) {
             this.row = row;
             this.col = col;
+        }
+
+        public int getValue(final int[][] board) {
+            return board[row][col];
         }
     }
 }
