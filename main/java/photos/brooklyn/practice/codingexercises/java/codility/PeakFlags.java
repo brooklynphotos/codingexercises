@@ -2,7 +2,8 @@ package photos.brooklyn.practice.codingexercises.java.codility;
 
 /**
  * https://app.codility.com/programmers/lessons/10-prime_and_composite_numbers/flags/
- * Solution: https://github.com/jlhuang/codility-lessons/blob/master/lesson%208%20:%20Prime%20and%20composite%20numbers/Flags/solution-flags.pdf
+ * Solution: https://codility.com/media/train/solution-flags.pdf
+ * Code example: https://github.com/jlhuang/codility-lessons/blob/master/lesson%208%20:%20Prime%20and%20composite%20numbers/Flags/Solution.java
  * The important note here is on the Big O: although there is a loop inside a loop,
  * the outer loop only goes to sqrt(N), and the inner loop only goes up to i,
  * So the sum is actually 1 + 2 + 3 + ... sqrt(N), which is N
@@ -23,7 +24,7 @@ public class PeakFlags {
                     break;
                 }
                 // at this peak we can increment the position and the count of flags
-                pos++; // move on to the next value
+                pos += i; // move position by i since that's where we need to try the flag next
                 num++; // number of flags can be incremented
             }
             // the result if the max of all the flags found going through the i's
