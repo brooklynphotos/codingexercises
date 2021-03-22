@@ -21,12 +21,19 @@ public class BiggestWaterContainer {
         int area = 0;
         int left = 0;
         int right = height.length - 1;
+        int[] prevMaxHeights = {0, 0};
         while (left < right) {
-            // find current area
-            int newArea = (right - left) * Math.min(height[left], height[right]);
-            area = Math.max(newArea, area);
+            final int leftHeight = height[left];
+            final int rightHeight = height[right];
+            // find current area if the heights are more
+            if (leftHeight >= prevMaxHeights[0] && rightHeight >= prevMaxHeights[1]) {
+                int newArea = (right - left) * Math.min(leftHeight, rightHeight);
+                area = Math.max(newArea, area);
+                prevMaxHeights[0] = leftHeight;
+                prevMaxHeights[1] = rightHeight;
+            }
             // decide which pointer to move
-            if (height[left] > height[right]) {
+            if (leftHeight > rightHeight) {
                 right--;
             } else {
                 left++;
