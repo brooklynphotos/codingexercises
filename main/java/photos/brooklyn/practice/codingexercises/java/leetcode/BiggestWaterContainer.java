@@ -7,7 +7,7 @@ public class BiggestWaterContainer {
     /**
      * |height| between 2 and 10^5
      * @param height each number between 0 and 10^4
-     * @return
+     * @return largest area possible in this range
      */
     public int maxArea(int[] height) {
         /*
