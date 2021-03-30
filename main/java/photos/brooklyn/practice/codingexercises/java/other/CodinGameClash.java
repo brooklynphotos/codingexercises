@@ -1,6 +1,32 @@
 package photos.brooklyn.practice.codingexercises.java.other;
 
+import java.util.Arrays;
+
 public class CodinGameClash {
+
+    public static boolean isTwin(String a, String b) {
+        return sort(a).equals(sort(b));
+    }
+
+    private static String sort(String s) {
+        char[] cs = s.toLowerCase().toCharArray();
+        Arrays.sort(cs);
+        return new String(cs);
+    }
+
+    public static final int closestToZero(int[] ints) {
+        if(ints==null || ints.length==0) return 0;
+        int closest = ints[0];
+        for (int i : ints) {
+            int a = Math.abs(i);
+            int c = Math.abs(closest);
+            if (a < c || (a==c && i > 0)) {
+                closest = i;
+            }
+        }
+        return closest;
+    }
+
     public static final String scrambleHalfHalf(String s) {
         if (s.length() < 2) {
             return s;
