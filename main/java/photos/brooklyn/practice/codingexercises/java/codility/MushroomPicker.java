@@ -4,19 +4,37 @@ package photos.brooklyn.practice.codingexercises.java.codility;
  * https://codility.com/media/train/3-PrefixSums.pdf
  */
 public class MushroomPicker {
-    public int maxCollection(int[] A, int k, int m) {
-        // from k, create prefix sum left and right
-        final int[] left = new int[k];
-        left[0] = A[k - 1];
+    /**
+     *
+     * @param A
+     * @param k at some position 0 or greater
+     * @param m number of steps smaller than the size of the array
+     * @return
+     */
+    public static int maxCollection(int[] A, int k, int m) {
+        final int[] ps = prefixSums(A);
+        int result = 0;
+        final int startValue = ps[k];
+        // i pointer to the left, j is pointer to the right
+        // move pointer to the left first
         for (int i = k - 1; i >= 0; i--) {
-            int j = k - 1 - i;
-            left[j] = (j == 0 ? 0 : left[j - 1]) + A[i];
+            int j = Math.min(A.length - 1, i + (m - (k - i))); // to the right
+            result = Math.max(result, startValue - ps[i] + ps[j + 1] - startValue);
         }
-        final int[] right = new int[A.length - k];
-        for (int i = k; i < A.length; i++) {
-            int j = i - k;
-            right[j] = (j == 0 ? 0 : right[j - 1]) + A[i];
+        // move pointer to the right first
+        for (int j = k + 1; j < A.length; j++) {
+            int i = Math.max(0, j - (m - (j - k)));
+            result = Math.max(result, startValue - ps[i] + ps[j + 1] - startValue);
         }
-        return 1;
+        return result;
+    }
+
+    private static int[] prefixSums(int[] ints) {
+        final int[] ps = new int[ints.length + 1];
+        ps[0] = 0;
+        for (int i = 0; i < ints.length; i++) {
+            ps[i + 1] = ps[i] + ints[i];
+        }
+        return ps;
     }
 }
