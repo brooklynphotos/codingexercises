@@ -1,4 +1,4 @@
-package photos.brooklyn.practice.codingexercises.java.leetcode.utils;
+package photos.brooklyn.practice.codingexercises.java.utils;
 
 import org.apache.commons.lang3.StringUtils;
 
