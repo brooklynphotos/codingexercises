@@ -44,13 +44,13 @@ public class Bst2Dll {
     }
 
     private static class DoubleLinkList {
-        private TreeNode head;
+        private final TreeNode head;
 
         public DoubleLinkList(final TreeNode head, final TreeNode tail) {
             this.head = head;
             this.tail = tail;
         }
 
-        private TreeNode tail;
+        private final TreeNode tail;
     }
 }
