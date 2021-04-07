@@ -1,7 +1,8 @@
 package photos.brooklyn.practice.codingexercises.java.codility;
 
-import org.junit.Ignore;
 import org.junit.Test;
+
+import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
@@ -51,13 +52,18 @@ public class MinMaxDivisionTest {
         assertEquals(3, new MinMaxDivision().solution(K, M, A));
     }
     @Test
+    public void givenRepeatedVals_returnThatVal() {
+        int K = 3;
+        int M = 5;
+        int[] A = {5,5,5};
+        assertEquals(5, new MinMaxDivision().solution(K, M, A));
+    }
+    @Test
     public void givenLargestUniformSample_returnUnitSize() {
         int K = 100_000;
         int M = 10_000;
         int[] A = new int[100_000];
-        for (int i = 0; i < A.length; i++) {
-            A[i] = M;
-        }
+        Arrays.fill(A, M);
         assertEquals(M, new MinMaxDivision().solution(K, M, A));
     }
 }

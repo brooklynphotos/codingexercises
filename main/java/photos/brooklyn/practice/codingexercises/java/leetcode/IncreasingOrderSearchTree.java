@@ -1,5 +1,7 @@
 package photos.brooklyn.practice.codingexercises.java.leetcode;
 
+import photos.brooklyn.practice.codingexercises.java.utils.TreeNode;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -25,15 +27,5 @@ public class IncreasingOrderSearchTree {
         if(root.right != null)
             l.addAll(toList(root.right));
         return l;
-    }
-}
-
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-
-    TreeNode(int x) {
-        val = x;
     }
 }

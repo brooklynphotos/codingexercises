@@ -1,5 +1,7 @@
 package photos.brooklyn.practice.codingexercises.java.leetcode;
 
+import photos.brooklyn.practice.codingexercises.java.utils.TreeNode;
+
 import java.util.LinkedList;
 import java.util.List;
 
