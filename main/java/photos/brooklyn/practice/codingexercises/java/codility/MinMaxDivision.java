@@ -2,6 +2,7 @@ package photos.brooklyn.practice.codingexercises.java.codility;
 
 /**
  * https://app.codility.com/programmers/lessons/14-binary_search_algorithm/min_max_division/
+ * Somehow did not pass some of the tests
  */
 public class MinMaxDivision {
     /**
