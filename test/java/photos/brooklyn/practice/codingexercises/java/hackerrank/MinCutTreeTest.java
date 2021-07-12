@@ -21,4 +21,17 @@ public class MinCutTreeTest {
         );
         assertEquals(3, MinCutTree.cutTheTree(data, edges));
     }
+
+    @Test
+    public void cutTheTree_eg2() {
+        final List<Integer> data = Arrays.asList(100, 200, 100, 500, 100, 600);
+        final List<List<Integer>> edges = Arrays.asList(
+                Arrays.asList(1, 2),
+                Arrays.asList(2, 3),
+                Arrays.asList(2, 5),
+                Arrays.asList(4, 5),
+                Arrays.asList(5, 6)
+        );
+        assertEquals(400, MinCutTree.cutTheTree(data, edges));
+    }
 }

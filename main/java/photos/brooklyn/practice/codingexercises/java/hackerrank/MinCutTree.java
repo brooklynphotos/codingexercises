@@ -1,8 +1,6 @@
 package photos.brooklyn.practice.codingexercises.java.hackerrank;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * https://www.hackerrank.com/challenges/cut-the-tree/problem
@@ -17,8 +15,21 @@ public class MinCutTree {
             add(edgeSets, a, b);
             add(edgeSets, b, a);
         }
+        // remove parents
+        Queue<Integer> children = new LinkedList<>();
+        children.add(0);
+        while (!children.isEmpty()) {
+            int parent = children.poll();
+            Set<Integer> kids = edgeSets[parent];
+            for (Integer k : kids) {
+                edgeSets[k].remove(parent);
+                children.add(k);
+            }
+        }
         int[] sums = new int[data.size()];
-        findSum(0, sums, edgeSets, data, -1);
+        Stack<Integer> stack = new Stack<>();
+        stack.push(0);
+        fillStack(stack, data, edgeSets, sums);
         final int largestSum = sums[0];
         int difference = Integer.MAX_VALUE;
         for (int x : sums) {
@@ -27,18 +38,23 @@ public class MinCutTree {
         return difference;
     }
 
-    private static int findSum(final int n, final int[] sums, final Set<Integer>[] edgeSets, final List<Integer> data, final int parent) {
-        int s = 0;
-        final Set<Integer> nodes = edgeSets[n];
-        if (nodes != null) {
-            for (int d : nodes) {
-                if (d != parent) {
-                    s += findSum(d, sums, edgeSets, data, n);
+    private static void fillStack(final Stack<Integer> stack, final List<Integer> data, final Set<Integer>[] edgeSets, final int[] sums) {
+        while (!stack.empty()) {
+            int top = stack.peek();
+            Set<Integer> children = edgeSets[top];
+            int childrenSum = 0;
+            for (Integer n : children) {
+                if (sums[n] == 0) {
+                    stack.push(n);
+                } else {
+                    childrenSum += sums[n];
                 }
             }
+            if (top == stack.peek()) {
+                sums[top] = data.get(top) + childrenSum;
+                stack.pop();
+            }
         }
-        sums[n] = s + data.get(n);
-        return sums[n];
     }
 
     private static void add(final Set<Integer>[] edgeSets, final Integer a, final Integer b) {
