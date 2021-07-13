@@ -12,4 +12,9 @@ public class GenaHanoiTest {
     public void hanoi() {
         assertEquals(3, GenaHanoi.hanoi(Arrays.asList(1, 4, 1)));
     }
+
+    @Test
+    public void hanoi_1mv() {
+        assertEquals(1, GenaHanoi.hanoi(Arrays.asList(2, 1, 1)));
+    }
 }
