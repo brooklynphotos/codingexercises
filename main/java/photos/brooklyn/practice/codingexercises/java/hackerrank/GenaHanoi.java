@@ -2,6 +2,9 @@ package photos.brooklyn.practice.codingexercises.java.hackerrank;
 
 import java.util.*;
 
+/**
+ * https://www.hackerrank.com/challenges/gena/problem
+ */
 public class GenaHanoi {
     private static class State {
         private int level;
