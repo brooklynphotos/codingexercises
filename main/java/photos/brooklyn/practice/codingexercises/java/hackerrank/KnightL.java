@@ -1,6 +1,8 @@
 package photos.brooklyn.practice.codingexercises.java.hackerrank;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * https://www.hackerrank.com/challenges/knightl-on-chessboard/problem
@@ -8,19 +10,10 @@ import java.util.*;
 public class KnightL {
     public static List<List<Integer>> knightlOnAChessboard(int n) {
         final List<List<Integer>> res = new ArrayList<>(n);
-        final Integer[][] memo = new Integer[n][n];
         for (int r = 1; r < n; r++) {
             final List<Integer> rowRes = new ArrayList<>(n);
             for (int c = 1; c < n; c++) {
-                int m;
-                if(memo[r][c] != null){
-                    m = memo[r][c];
-                }else{
-                    m = knightlOnAChessboard(r, c, n);
-                    memo[r][c] = m;
-                    memo[c][r] = m;
-                }
-                rowRes.add(m);
+                rowRes.add(knightlOnAChessboard(r, c, n));
             }
             res.add(rowRes);
         }
@@ -28,7 +21,6 @@ public class KnightL {
     }
 
     private static int knightlOnAChessboard(final int a, final int b, final int boardSize) {
-        System.out.println("Getting res for " + a + "," + b);
         Queue<Coordinate> q = new LinkedList<>();
         Set<Coordinate> visited = new HashSet<>();
         q.add(new Coordinate(0, 0));
@@ -50,7 +42,7 @@ public class KnightL {
     }
 
     private static Collection<Coordinate> getNextMoves(final Coordinate origin, final int a, final int b, final int boardSize, final Set<Coordinate> visited) {
-        Set<Coordinate> nextMoves = new HashSet<>(Arrays.asList(
+        Set<Coordinate> nextMoves = Stream.of(
                 new Coordinate(origin.row - a, origin.col + b),
                 new Coordinate(origin.row - a, origin.col - b),
                 new Coordinate(origin.row + a, origin.col + b),
@@ -59,16 +51,10 @@ public class KnightL {
                 new Coordinate(origin.row - b, origin.col - a),
                 new Coordinate(origin.row + b, origin.col + a),
                 new Coordinate(origin.row + b, origin.col - a)
-        ));
-        final List<Coordinate> res = new ArrayList<>(nextMoves.size());
-        for (Coordinate possible : nextMoves) {
-            if (possible.row < 0 || possible.col < 0 || possible.row >= boardSize || possible.col >= boardSize || visited.contains(possible)) {
-                continue;
-            }
-            possible.level = origin.level + 1;
-            res.add(possible);
-        }
-        return res;
+        ).filter(possible -> !(possible.row < 0 || possible.col < 0 || possible.row >= boardSize || possible.col >= boardSize || visited.contains(possible)))
+                .collect(Collectors.toSet());
+        nextMoves.forEach(possible ->possible.level = origin.level + 1);
+        return nextMoves;
     }
 
     private static class Coordinate {
