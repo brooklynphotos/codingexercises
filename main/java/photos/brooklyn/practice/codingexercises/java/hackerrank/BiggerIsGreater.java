@@ -17,19 +17,22 @@ public class BiggerIsGreater {
         final char pivotChar = w.charAt(pivot);
         // find the last character greater than the pivot
         int j;
-        for (j = w.length() - 1; j > 0; j--) {
-            final char x = w.charAt(j);
-            if (x > pivotChar) {
-                final char[] chars = w.toCharArray();
-                chars[j] = pivotChar;
-                chars[pivot] = x;
-                final char[] suffixChars = new String(chars, i, w.length() - i).toCharArray();
-                Arrays.sort(suffixChars);
-                final String prefix = new String(chars, 0, i);
-                return prefix + new String(suffixChars);
-            }
+        for (j = w.length() - 1; j > 0 && w.charAt(j) <= pivotChar; j--);
+        final char x = w.charAt(j);
+        final char[] chars = w.toCharArray();
+        chars[j] = pivotChar;
+        chars[pivot] = x;
+        // reverse the suffix
+        int m = w.length() - 1;
+        int n = i;
+        while (n < m) {
+            char tmp = chars[n];
+            chars[n] = chars[m];
+            chars[m] = tmp;
+            n++;
+            m--;
         }
-        throw new IllegalStateException("Did not expect to reach here");
+        return new String(chars);
     }
 
 }
